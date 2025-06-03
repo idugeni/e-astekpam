@@ -25,7 +25,7 @@ const padLabel = (label: string, length: number): string => {
 
 const formatPenghuniCount = (count: number | undefined | null): string => {
   const numericCount = Number(count);
-  if (isNaN(numericCount) || numericCount < 0) { // Handle null, undefined, NaN correctly
+  if (isNaN(numericCount) || numericCount < 0) {
     return "-".padStart(3) + " Orang";
   }
   return String(numericCount).padStart(3) + " Orang";
@@ -33,7 +33,7 @@ const formatPenghuniCount = (count: number | undefined | null): string => {
 
 const formatInventarisValue = (count: number | undefined | null): string => {
   const numericCount = Number(count);
-  if (isNaN(numericCount) || numericCount < 0) { // Handle null, undefined, NaN correctly
+  if (isNaN(numericCount) || numericCount < 0) {
     return "-".padStart(2) + " buah";
   }
   return String(numericCount).padStart(2) + " buah";
@@ -126,7 +126,7 @@ export function generateReportText(data: DailyReportFormInputs): string {
       break;
     case "MALAM_PAGI":
       if (personilMalam) personilSectionOutputs.push(generatePersonilShiftText(personilMalam, "Malam"));
-      if (personilPagi) personilSectionOutputs.push(generatePersonilShiftText(personilPagi, "Pagi")); // Removed "(Berikutnya)"
+      if (personilPagi) personilSectionOutputs.push(generatePersonilShiftText(personilPagi, "Pagi"));
       break;
     default:
       personilSectionOutputs.push("Rentang shift tidak valid.");

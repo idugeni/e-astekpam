@@ -10,18 +10,18 @@ export const PenghuniSchema = z.object({
   jumlahWBPDiluar: z.coerce.number().min(0, "Jumlah tidak boleh negatif"),
 });
 
-// PersonilShiftSchema sekarang memiliki field opsional, superRefine akan memberlakukannya
+
 export const PersonilShiftSchema = z.object({
-  rupamId: z.string().optional(), // Menjadi opsional di sini
-  keterangan: z.string().optional(), // Menjadi opsional di sini
+  rupamId: z.string().optional(),
+  keterangan: z.string().optional(),
 });
 
 export const PetugasPiketSchema = z.object({
-  perwiraPiket: z.array(z.string()), // Dihapus .min(1, "...")
-  dapur: z.array(z.string()), // Dihapus .min(1, "...")
-  piketBlokWanita: z.array(z.string()), // Dihapus .min(1, "...")
-  piketStaffKPR: z.array(z.string()), // Dihapus .min(1, "...")
-  piketStaffSiang: z.array(z.string()), // Dihapus .min(1, "...")
+  perwiraPiket: z.array(z.string()),
+  dapur: z.array(z.string()),
+  piketBlokWanita: z.array(z.string()),
+  piketStaffKPR: z.array(z.string()),
+  piketStaffSiang: z.array(z.string()),
 });
 
 export const InventarisSchema = z.object({
@@ -54,14 +54,14 @@ export const DailyReportSchema = z.object({
   inventaris: InventarisSchema,
   kejadianPenting: z.string().optional(),
 }).superRefine((data, ctx) => {
-  // Fungsi ini akan memeriksa apakah field wajib untuk shift yang AKTIF sudah terisi.
+
   const validateActiveShift = (
-    shiftData: z.infer<typeof PersonilShiftSchema> | undefined, // Akan selalu berupa objek karena defaultValues
+    shiftData: z.infer<typeof PersonilShiftSchema> | undefined,
     pathPrefix: "personilPagi" | "personilSiang" | "personilMalam",
     displayName: string
   ) => {
-    // Karena shiftData selalu ada objeknya (dari defaultValues),
-    // kita langsung cek field di dalamnya.
+
+
     if (!shiftData?.rupamId || shiftData.rupamId.trim() === "") {
       ctx.addIssue({
         code: z.ZodIssueCode.custom,

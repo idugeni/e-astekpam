@@ -38,7 +38,7 @@ export default function DashboardPage() {
           variant: "default" 
         });
       } catch (err) {
-        console.error("Failed to copy report to clipboard:", err);
+
         toast({ 
           title: "Gagal Menyalin", 
           description: "Tidak dapat menyalin laporan ke clipboard secara otomatis. Silakan salin manual.",
@@ -132,7 +132,7 @@ export default function DashboardPage() {
         variant: "default" 
       });
     } catch (err) {
-      console.error("Failed to copy report to clipboard:", err);
+
       toast({ 
         title: "Gagal Menyalin", 
         description: "Tidak dapat menyalin laporan ke clipboard.",

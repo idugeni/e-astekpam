@@ -21,8 +21,6 @@ export function ThemeToggle() {
   }, [])
 
   if (!mounted) {
-    // Placeholder untuk menghindari hydration mismatch.
-    // Pastikan ukuran dan gaya placeholder sesuai dengan tombol.
     return (
       <div className="h-10 w-10 rounded-full border border-input bg-background animate-pulse" />
     );
@@ -34,14 +32,11 @@ export function ThemeToggle() {
         <Button
           variant="outline"
           size="icon"
-          // Pastikan ikon memiliki kontras yang cukup di semua state.
           className="rounded-full transition-colors duration-200
                            text-foreground /* Default color with sufficient contrast */
                      hover:bg-accent hover:text-accent-foreground /* Ini menjamin kontras ikon saat hover */
                      focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
         >
-          {/* Ikon Sun dan Moon dengan transisi dan rotasi */}
-          {/* Warna ikon secara default akan mewarisi warna teks dari tombol */}
           <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
           <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
           <span className="sr-only">Toggle theme</span>

@@ -121,7 +121,7 @@ export default function PenghuniFormSection({ control, watch, setValue }: Penghu
           name="penghuni.jumlahWBPDidalam"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Jumlah WBP di Dalam (Otomatis)</FormLabel>
+              <FormLabel>Jumlah WBP di Dalam</FormLabel>
               <FormControl>
                 <Input 
                   type="number" 

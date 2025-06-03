@@ -16,8 +16,6 @@ export default function AppFooter() {
         {currentYear !== null ? (
           <p>&copy; {currentYear} E-ASTEKPAM. All rights reserved.</p>
         ) : (
-          // This is the fallback rendered by the server and should be initially by the client.
-          // Make sure this string is exactly "© E-ASTEKPAM. All rights reserved."
           <p>&copy; E-ASTEKPAM. All rights reserved.</p>
         )}
         <p className="mt-1">
