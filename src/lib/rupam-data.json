@@ -1,0 +1,44 @@
+
+[
+  {
+    "id": "rupam_1",
+    "nama": "Rupam I",
+    "karupam": "SUTEJO",
+    "anggota": [
+      "ZEONOVANDHIE KUKUH P",
+      "SETYOSO HARYADI"
+    ],
+    "petugasP2U": "IBNU SUGANDA"
+  },
+  {
+    "id": "rupam_2",
+    "nama": "Rupam II",
+    "karupam": "AHMAD MAHIN",
+    "anggota": [
+      "NANANG HERU SUSILO",
+      "EKO ARIF HIDAYAT"
+    ],
+    "petugasP2U": "NAUFAL ALLAAM F"
+  },
+  {
+    "id": "rupam_3",
+    "nama": "Rupam III",
+    "karupam": "DONNY CHANDRA N",
+    "anggota": [
+      "HASAN SHOIMAINI",
+      "AHMAD LABIIB"
+    ],
+    "petugasP2U": "SETIO WIBOWO"
+  },
+  {
+    "id": "rupam_4",
+    "nama": "Rupam IV",
+    "karupam": "SUPRIYONO",
+    "anggota": [
+      "DIPTA ZAZA DIANDARU",
+      "ZAENUDIN"
+    ],
+    "petugasP2U": "RIZKY FADLI"
+  }
+]
+

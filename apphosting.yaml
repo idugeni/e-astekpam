@@ -1,0 +1,32 @@
+# apphosting.yaml
+# Konfigurasi untuk lingkungan pengembangan atau pengujian awal.
+# Lokasi: Direktori root dari sumber backend Anda (misalnya, jika backend Anda di 'functions',
+# maka file ini bisa berada di 'functions/apphosting.yaml' atau di root proyek
+# Firebase Anda jika backend adalah bagian dari aplikasi monorepo yang lebih besar).
+
+runConfig:
+  # maxInstances: Jumlah maksimum instance Cloud Run yang diizinkan untuk diskalakan.
+  # Mengatur ke 1 berarti aplikasi akan selalu berjalan hanya pada satu instance.
+  # Ini meminimalkan biaya tetapi tidak menyediakan skalabilitas.
+  maxInstances: 1
+  
+  # minInstances: Jumlah minimum instance yang selalu aktif.
+  # Defaultnya adalah 0, yang berarti instance akan mati jika tidak ada traffic,
+  # kemudian "cold start" saat permintaan baru datang.
+  # Membiarkan 0 bagus untuk menghemat biaya di lingkungan pengembangan.
+  minInstances: 0
+
+  # cpu: Jumlah vCPU yang dialokasikan per instance.
+  # Nilai yang lebih tinggi memberikan lebih banyak daya pemrosesan per instance.
+  # Default seringkali 1 untuk banyak aplikasi.
+  cpu: 1
+
+  # memoryMiB: Jumlah memori (dalam MiB) yang dialokasikan per instance.
+  # Nilai yang lebih tinggi memungkinkan instance menangani beban kerja yang lebih intensif memori.
+  # Default seringkali 512 MiB atau 1024 MiB.
+  memoryMiB: 512
+
+  # concurrency: Jumlah maksimum permintaan bersamaan yang dapat ditangani oleh satu instance.
+  # Nilai default Cloud Run adalah 80. Mengatur nilai ini lebih rendah jika aplikasi Anda
+  # tidak dapat memproses banyak permintaan secara efisien secara paralel.
+  concurrency: 80
