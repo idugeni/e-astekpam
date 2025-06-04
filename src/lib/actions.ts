@@ -39,7 +39,9 @@ export async function submitDailyReport(data: DailyReportFormInputs, userId?: st
       throw new Error("Gagal menyimpan file laporan.");
     }
     
-    return { success: true, reportText, reportId: firestoreResult.reportId, storagePath: storageResult.path };
+    const whatsappGroupId = '6285227739249-1489367120@g.us';
+    const whatsappShareUrl = `https://wa.me/send?chat_id=${whatsappGroupId}&text=${encodeURIComponent(reportText)}`;
+    return { success: true, reportText, reportId: firestoreResult.reportId, storagePath: storageResult.path, whatsappShareUrl };
   } catch (error) {
 
     const errorMessage = error instanceof Error ? error.message : "Terjadi kesalahan server.";

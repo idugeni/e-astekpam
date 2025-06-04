@@ -12,6 +12,7 @@ import ReportOutputCard from '@/components/dashboard/ReportOutputCard';
 export default function DashboardPage() {
   const [generatedReport, setGeneratedReport] = useState<string | null>(null);
   const [reportDateForEmail, setReportDateForEmail] = useState<Date | null>(null);
+  const [whatsappUrl, setWhatsappUrl] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isEmailing, setIsEmailing] = useState(false);
   const [emailRecipient, setEmailRecipient] = useState<string>("");
@@ -24,6 +25,9 @@ export default function DashboardPage() {
     if (result.success && result.reportText) {
       setGeneratedReport(result.reportText);
       setReportDateForEmail(data.tanggalLaporan);
+      if (result.whatsappShareUrl) {
+        setWhatsappUrl(result.whatsappShareUrl);
+      }
       toast({ 
         title: "Laporan Berhasil Dibuat", 
         description: `ID Laporan: ${result.reportId}, Disimpan di: ${result.storagePath}`,
@@ -142,16 +146,14 @@ export default function DashboardPage() {
   };
 
   const handleSendToWhatsApp = () => {
-    if (!generatedReport) {
-      toast({ 
-        title: "Tidak Ada Laporan", 
+    if (!whatsappUrl) {
+      toast({
+        title: "Tidak Ada Laporan",
         description: "Buat laporan terlebih dahulu.",
-        variant: "default" 
+        variant: "default"
       });
       return;
     }
-    const encodedText = encodeURIComponent(generatedReport);
-    const whatsappUrl = `https://wa.me/?text=${encodedText}`;
     window.open(whatsappUrl, '_blank');
     toast({ 
       title: "Membuka WhatsApp", 

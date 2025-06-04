@@ -95,7 +95,7 @@ export const DailyReportSchema = z.object({
   }
 });
 
-export type DailyReportFormInputs = z.infer<typeof DailyReportSchema>;
+export type DailyReportFormInputs = z.infer<typeof DailyReportSchema> & { whatsappShareUrl?: string };
 
 export interface Pegawai {
   id: string;
