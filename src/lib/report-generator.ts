@@ -198,6 +198,7 @@ ${padLabel(staffKPRLabel, maxPiketLabelLength)}: ${formatCommaSeparatedList(petu
 ${padLabel(staffSiangLabel, maxPiketLabelLength)}: ${formatCommaSeparatedList(petugasPiket.piketStaffSiang)}\`\`\``;
 
   const bagianPersonil = `*B. PERSONIL PENGAMANAN*
+
 ${joinedPersonilOutput}
 
 ${bagianPersonilPiket}`;
