@@ -2,6 +2,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import { formatInTimeZone } from 'date-fns-tz';
 import { DailyReportForm } from '@/components/forms/DailyReportForm';
 import type { DailyReportFormInputs } from '@/types';
 import { submitDailyReport, emailReportAction } from '@/lib/actions';
@@ -106,7 +107,8 @@ export default function DashboardPage() {
     const blob = new Blob([generatedReport], { type: 'text/plain;charset=utf-8' });
     const link = document.createElement('a');
     const now = reportDateForEmail;
-    const fileName = `ASTEKPAM_WONOSOBO_${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}_${String(new Date().getHours()).padStart(2, '0')}-${String(new Date().getMinutes()).padStart(2, '0')}.txt`;
+    const targetTimeZone = 'Asia/Jakarta';
+    const fileName = `ASTEKPAM_WONOSOBO_${formatInTimeZone(now, targetTimeZone, 'yyyy-MM-dd_HH-mm')}.txt`;
     link.href = URL.createObjectURL(blob);
     link.download = fileName;
     document.body.appendChild(link);

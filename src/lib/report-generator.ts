@@ -1,6 +1,7 @@
 
 import type { DailyReportFormInputs, PersonilShiftSchema, RupamData } from '@/types';
 import { format } from 'date-fns';
+import { formatInTimeZone } from 'date-fns-tz';
 import { id } from 'date-fns/locale';
 import type { z } from 'zod';
 import rupamDataJson from '@/lib/rupam-data.json';
@@ -74,10 +75,12 @@ ${padLabel(p2uLabel, maxLabelLength)}: ${rupamDetail.petugasP2U || '-'}`;
 export function generateReportText(data: DailyReportFormInputs): string {
   const reportDate = data.tanggalLaporan;
 
-  const hari = format(reportDate, 'eeee', { locale: id }).toLocaleUpperCase('id-ID');
-  const tanggal = format(reportDate, 'd');
-  const bulan = format(reportDate, 'MMMM', { locale: id }).toLocaleUpperCase('id-ID');
-  const tahun = format(reportDate, 'yyyy');
+  const targetTimeZone = 'Asia/Jakarta';
+
+  const hari = formatInTimeZone(reportDate, targetTimeZone, 'eeee', { locale: id }).toLocaleUpperCase('id-ID');
+  const tanggal = formatInTimeZone(reportDate, targetTimeZone, 'd');
+  const bulan = formatInTimeZone(reportDate, targetTimeZone, 'MMMM', { locale: id }).toLocaleUpperCase('id-ID');
+  const tahun = formatInTimeZone(reportDate, targetTimeZone, 'yyyy');
 
   let jamLapor: string;
   let menitLapor: string = "00";

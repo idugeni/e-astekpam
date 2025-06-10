@@ -3,16 +3,17 @@
 import type { DailyReportFormInputs } from "@/types";
 import { generateReportText } from "./report-generator";
 import { format } from "date-fns";
+import { formatInTimeZone } from 'date-fns-tz';
 
 async function saveReportToFirestore(reportData: DailyReportFormInputs, reportText: string, userId: string | undefined) {
-  const reportId = `report_${format(reportData.tanggalLaporan, 'yyyyMMdd')}_${new Date().getTime()}`;
+  const reportId = `report_${formatInTimeZone(reportData.tanggalLaporan, 'Asia/Jakarta', 'yyyyMMdd')}_${new Date().getTime()}`;
 
   await new Promise(resolve => setTimeout(resolve, 500));
   return { success: true, reportId };
 }
 
 async function saveReportToStorage(reportText: string, tanggalLaporan: Date) {
-  const fileName = `ASTEKPAM_WONOSOBO_${format(tanggalLaporan, 'yyyy-MM-dd_HH-mm')}.txt`;
+  const fileName = `ASTEKPAM_WONOSOBO_${formatInTimeZone(tanggalLaporan, 'Asia/Jakarta', 'yyyy-MM-dd_HH-mm')}.txt`;
 
   await new Promise(resolve => setTimeout(resolve, 500));
   return { success: true, path: `/reports/${fileName}` };
