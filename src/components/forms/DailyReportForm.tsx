@@ -33,9 +33,9 @@ export function DailyReportForm({ onSubmit, onInvalid, isLoading }: DailyReportF
       tanggalLaporan: undefined, 
       selectedShiftRange: "PAGI_SIANG",
       penghuni: {
-        tahananL: 54,
+        tahananL: 52,
         tahananP: 0,
-        narapidanaL: 73,
+        narapidanaL: 75,
         narapidanaP: 1,
         jumlahWBPDidalam: 128,
         jumlahWBPDiluar: 0,
