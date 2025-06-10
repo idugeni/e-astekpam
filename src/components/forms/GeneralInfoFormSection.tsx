@@ -1,8 +1,7 @@
-
 "use client";
 
 import * as React from "react";
-import type { Control } from "react-hook-form";
+import { useWatch, type Control } from "react-hook-form"; // Tambahkan useWatch
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { FormField, FormItem, FormLabel, FormControl, FormMessage } from "@/components/ui/form";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -11,7 +10,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { CalendarIcon } from "lucide-react";
-import { format } from "date-fns";
+import { format, addDays } from "date-fns";
 import { id as LocaleID } from "date-fns/locale";
 import type { DailyReportFormInputs, ShiftRange } from "@/types";
 
@@ -31,6 +30,13 @@ const isValidDate = (date: any): date is Date => {
 
 export default function GeneralInfoFormSection({ formControl }: GeneralInfoFormSectionProps) {
   const [isDatePickerOpen, setIsDatePickerOpen] = React.useState(false);
+
+  // Menggunakan useWatch untuk mengawasi nilai 'selectedShiftRange'
+  // Ini akan memicu render ulang komponen ketika nilai 'selectedShiftRange' berubah
+  const watchedShiftRange = useWatch({
+    control: formControl,
+    name: "selectedShiftRange",
+  });
 
   return (
     <Card className="py-0">
@@ -70,7 +76,13 @@ export default function GeneralInfoFormSection({ formControl }: GeneralInfoFormS
                       mode="single"
                       selected={isValidDate(field.value) ? field.value : undefined}
                       onSelect={(date) => {
-                        if (date) field.onChange(date);
+                        if (date) {
+                          let adjustedDate = date;
+                          if (watchedShiftRange === "MALAM_PAGI") {
+                            adjustedDate = addDays(date, 1);
+                          }
+                          field.onChange(adjustedDate);
+                        }
                         setIsDatePickerOpen(false);
                       }}
                       disabled={(date) =>
