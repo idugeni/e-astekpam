@@ -141,9 +141,7 @@ export function generateReportText(data: DailyReportFormInputs): string {
     (penghuni.tahananL || 0) +
     (penghuni.tahananP || 0) +
     (penghuni.narapidanaL || 0) +
-    (penghuni.narapidanaP || 0) +
-    (penghuni.jumlahWBPDidalam || 0) +
-    (penghuni.jumlahWBPDiluar || 0);
+    (penghuni.narapidanaP || 0);
 
   const tahananLLabel = "-Tahanan L";
   const tahananPLabel = "-Tahanan P";
