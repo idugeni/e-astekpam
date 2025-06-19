@@ -9,6 +9,7 @@ import { Form } from "@/components/ui/form";
 import { DailyReportSchema, type DailyReportFormInputs } from "@/types";
 import rupamDataJson from "@/lib/rupam-data.json";
 import type { RupamData } from "@/types";
+import { defaultDailyReportFormValues } from "@/lib/default-form-values";
 import { Loader2 } from "lucide-react";
 import PenghuniFormSection from "./PenghuniFormSection";
 import PersonilShiftFormSection from "./PersonilShiftFormSection";
@@ -29,39 +30,7 @@ export function DailyReportForm({ onSubmit, onInvalid, isLoading }: DailyReportF
   const form = useForm<DailyReportFormInputs>({
     resolver: zodResolver(DailyReportSchema),
     shouldUnregister: false,
-    defaultValues: {
-      tanggalLaporan: undefined, 
-      selectedShiftRange: "PAGI_SIANG",
-      penghuni: {
-        tahananL: 52,
-        tahananP: 0,
-        narapidanaL: 75,
-        narapidanaP: 1,
-        jumlahWBPDidalam: 128,
-        jumlahWBPDiluar: 0,
-      },
-      personilPagi: { rupamId: "", keterangan: "Hadir Lengkap" },
-      personilSiang: { rupamId: "", keterangan: "Hadir Lengkap" },
-      personilMalam: { rupamId: "", keterangan: "Hadir Lengkap" },
-      petugasPiket: {
-        perwiraPiket: [], dapur: [], piketBlokWanita: [],
-        piketStaffKPR: [],
-        piketStaffSiang: [],
-      },
-      inventaris: {
-        senjataApiP3A: 1,
-        amunisiP3AKaret: 10,
-        borgol: 2,
-        metalDetector: 1,
-        ht: 6,
-        senter: 1,
-        lonceng: 5,
-        cctv: 16,
-        sepatuBoot: 2,
-        payung: 2,
-      },
-      kejadianPenting: "",
-    },
+    defaultValues: defaultDailyReportFormValues,
   });
 
   const watchedShiftRange = form.watch("selectedShiftRange");
