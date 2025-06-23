@@ -6,9 +6,9 @@ export const defaultDailyReportFormValues: DailyReportFormInputs = {
   penghuni: {
     tahananL: 51,
     tahananP: 0,
-    narapidanaL: 64,
+    narapidanaL: 63,
     narapidanaP: 1,
-    jumlahWBPDidalam: 116,
+    jumlahWBPDidalam: 115,
     jumlahWBPDiluar: 0,
   },
   personilPagi: { rupamId: "", keterangan: "Hadir Lengkap" },
