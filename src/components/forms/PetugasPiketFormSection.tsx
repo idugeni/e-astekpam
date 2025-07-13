@@ -28,8 +28,7 @@ export default function PetugasPiketFormSection({ formControl }: PetugasPiketFor
     { name: "petugasPiket.perwiraPiket", label: "Perwira Piket", categoryKey: "perwiraPiket" as PiketCategory },
     { name: "petugasPiket.dapur", label: "Piket Dapur", categoryKey: "dapur" as PiketCategory },
     { name: "petugasPiket.piketBlokWanita", label: "Piket Blok Wanita", categoryKey: "piketBlokWanita" as PiketCategory },
-    { name: "petugasPiket.piketStaffKPR", label: "Piket Staff KPR", categoryKey: "piketStaffKPR" as PiketCategory },
-    { name: "petugasPiket.piketStaffSiang", label: "Piket Staff Siang", categoryKey: "piketStaffSiang" as PiketCategory },
+    { name: "petugasPiket.piketStaffSiang", label: "Piket Staff KPR (Siang)", categoryKey: "piketStaffSiang" as PiketCategory },
     { name: "petugasPiket.piketStaffMalam", label: "Piket Staff Malam", categoryKey: "piketStaffMalam" as PiketCategory },
   ] as const;
 

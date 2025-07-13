@@ -20,7 +20,6 @@ export const PetugasPiketSchema = z.object({
   perwiraPiket: z.array(z.string()),
   dapur: z.array(z.string()),
   piketBlokWanita: z.array(z.string()),
-  piketStaffKPR: z.array(z.string()),
   piketStaffSiang: z.array(z.string()),
   piketStaffMalam: z.array(z.string()),
 });

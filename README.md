@@ -142,7 +142,7 @@ Formulir input data harian yang intuitif memungkinkan pengguna untuk memasukkan 
 ### Seleksi Personil
 Pemilihan personil untuk berbagai pos dan shift dipermudah melalui:
 - **RUPAM (Regu Pengamanan)**: Pemilihan Rupam untuk shift Pagi, Siang, dan Malam. Detail Karupam, Anggota, dan Petugas P2U akan otomatis ditampilkan berdasarkan Rupam yang dipilih dari `rupam-data.json`.
-- **Petugas Piket**: Pemilihan petugas untuk Perwira Piket, Piket Dapur, Piket Blok Wanita, Piket Staff KPR, dan Piket Staff Siang dari daftar yang tersedia di `categorized-piket-personnel.json`.
+- **Petugas Piket**: Pemilihan petugas untuk Perwira Piket, Piket Dapur, Piket Blok Wanita, dan Piket Staff KPR (Siang) dari daftar yang tersedia di `categorized-piket-personnel.json`.
 
 ### Pembuatan Laporan
 Setelah semua data relevan dimasukkan, aplikasi secara otomatis menghasilkan laporan harian dalam format teks standar yang siap digunakan. Format laporan mencakup:
@@ -164,4 +164,3 @@ Saat ini, kontribusi tidak dibuka untuk umum. Namun, jika Anda memiliki saran at
 ## Lisensi
 
 Proyek ini dilisensikan di bawah [Lisensi MIT](LICENSE).
-```

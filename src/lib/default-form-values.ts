@@ -18,7 +18,6 @@ export const defaultDailyReportFormValues: DailyReportFormInputs = {
     perwiraPiket: [],
     dapur: [],
     piketBlokWanita: [],
-    piketStaffKPR: [],
     piketStaffSiang: [],
     piketStaffMalam: []
   },

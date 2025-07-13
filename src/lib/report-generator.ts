@@ -158,11 +158,10 @@ export function generateReportText(data: DailyReportFormInputs): string {
   const perwiraPiketLabel = "Perwira Piket";
   const dapurLabel = "Dapur";
   const blokWanitaLabel = "Piket Blok Wanita";
-  const staffKPRLabel = "Piket Staff KPR";
-  const staffSiangLabel = "Piket Staff Siang";
+  const staffSiangLabel = "Piket Staff KPR (Siang)";
   const staffMalamLabel = "Piket Staff Malam";
   const maxPiketLabelLength = Math.max(
-    perwiraPiketLabel.length, dapurLabel.length, blokWanitaLabel.length, staffKPRLabel.length, staffSiangLabel.length, staffMalamLabel.length
+    perwiraPiketLabel.length, dapurLabel.length, blokWanitaLabel.length, staffSiangLabel.length, staffMalamLabel.length
   ) + 2;
 
   const senjataLabel = "- Senjata Api P3A";
@@ -198,7 +197,6 @@ ${padLabel(wbpLuarLabel, maxPenghuniLabelLength)}: ${formatPenghuniCount(penghun
 \`\`\`${padLabel(perwiraPiketLabel, maxPiketLabelLength)}: ${formatCommaSeparatedList(petugasPiket.perwiraPiket)}
 ${padLabel(dapurLabel, maxPiketLabelLength)}: ${formatCommaSeparatedList(petugasPiket.dapur)}
 ${padLabel(blokWanitaLabel, maxPiketLabelLength)}: ${formatCommaSeparatedList(petugasPiket.piketBlokWanita)}
-${padLabel(staffKPRLabel, maxPiketLabelLength)}: ${formatCommaSeparatedList(petugasPiket.piketStaffKPR)}
 ${padLabel(staffSiangLabel, maxPiketLabelLength)}: ${formatCommaSeparatedList(petugasPiket.piketStaffSiang)}
 ${padLabel(staffMalamLabel, maxPiketLabelLength)}: ${formatCommaSeparatedList(petugasPiket.piketStaffMalam)}\`\`\``;
 
