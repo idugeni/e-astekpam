@@ -4,11 +4,11 @@ export const defaultDailyReportFormValues: DailyReportFormInputs = {
   tanggalLaporan: new Date(),
   selectedShiftRange: "PAGI_SIANG",
   penghuni: {
-    tahananL: 51,
+    tahananL: 61,
     tahananP: 0,
-    narapidanaL: 63,
+    narapidanaL: 62,
     narapidanaP: 1,
-    jumlahWBPDidalam: 115,
+    jumlahWBPDidalam: 124,
     jumlahWBPDiluar: 0,
   },
   personilPagi: { rupamId: "", keterangan: "Hadir Lengkap" },
@@ -20,6 +20,7 @@ export const defaultDailyReportFormValues: DailyReportFormInputs = {
     piketBlokWanita: [],
     piketStaffKPR: [],
     piketStaffSiang: [],
+    piketStaffMalam: []
   },
   inventaris: {
     senjataApiP3A: 1,

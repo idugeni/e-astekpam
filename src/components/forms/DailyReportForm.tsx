@@ -3,7 +3,7 @@
 
 import * as React from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm, type FieldErrors } from "react-hook-form";
+import { Resolver, useForm, type FieldErrors } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 import { DailyReportSchema, type DailyReportFormInputs } from "@/types";
@@ -28,7 +28,7 @@ const typedRupamData: RupamData[] = rupamDataJson as RupamData[];
 
 export function DailyReportForm({ onSubmit, onInvalid, isLoading }: DailyReportFormProps) {
   const form = useForm<DailyReportFormInputs>({
-    resolver: zodResolver(DailyReportSchema),
+    resolver: zodResolver(DailyReportSchema) as Resolver<DailyReportFormInputs>,
     shouldUnregister: false,
     defaultValues: defaultDailyReportFormValues,
   });

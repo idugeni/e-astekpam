@@ -22,6 +22,7 @@ export const PetugasPiketSchema = z.object({
   piketBlokWanita: z.array(z.string()),
   piketStaffKPR: z.array(z.string()),
   piketStaffSiang: z.array(z.string()),
+  piketStaffMalam: z.array(z.string()),
 });
 
 export const InventarisSchema = z.object({
@@ -38,13 +39,13 @@ export const InventarisSchema = z.object({
 });
 
 export const ShiftRangeEnum = z.enum(["PAGI_SIANG", "SIANG_MALAM", "MALAM_PAGI"], {
-  required_error: "Rentang shift harus dipilih.",
+  message: "Rentang shift harus dipilih.",
 });
 export type ShiftRange = z.infer<typeof ShiftRangeEnum>;
 
 
 export const DailyReportSchema = z.object({
-  tanggalLaporan: z.date({ required_error: "Tanggal laporan harus diisi." }),
+  tanggalLaporan: z.date({ message: "Tanggal laporan harus diisi." }),
   selectedShiftRange: ShiftRangeEnum,
   penghuni: PenghuniSchema,
   personilPagi: PersonilShiftSchema.optional(),

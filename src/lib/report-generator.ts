@@ -160,20 +160,21 @@ export function generateReportText(data: DailyReportFormInputs): string {
   const blokWanitaLabel = "Piket Blok Wanita";
   const staffKPRLabel = "Piket Staff KPR";
   const staffSiangLabel = "Piket Staff Siang";
+  const staffMalamLabel = "Piket Staff Malam";
   const maxPiketLabelLength = Math.max(
-    perwiraPiketLabel.length, dapurLabel.length, blokWanitaLabel.length, staffKPRLabel.length, staffSiangLabel.length
+    perwiraPiketLabel.length, dapurLabel.length, blokWanitaLabel.length, staffKPRLabel.length, staffSiangLabel.length, staffMalamLabel.length
   ) + 2;
 
-  const senjataLabel = "-Senjata Api P3A";
-  const amunisiLabel = "-Amunisi P3A karet";
-  const borgolLabel = "-Borgol";
-  const metalDetectorLabel = "-Metal Detector";
-  const htLabel = "-HT";
-  const senterLabel = "-Senter";
-  const loncengLabel = "-Lonceng";
-  const cctvLabel = "-CCTV";
-  const sepatuBootLabel = "-Sepatu Boot";
-  const payungLabel = "-Payung";
+  const senjataLabel = "- Senjata Api P3A";
+  const amunisiLabel = "- Amunisi P3A karet";
+  const borgolLabel = "- Borgol";
+  const metalDetectorLabel = "- Metal Detector";
+  const htLabel = "- HT";
+  const senterLabel = "- Senter";
+  const loncengLabel = "- Lonceng";
+  const cctvLabel = "- CCTV";
+  const sepatuBootLabel = "- Sepatu Boot";
+  const payungLabel = "- Payung";
   const maxInventarisLabelLength = Math.max(
     senjataLabel.length, amunisiLabel.length, borgolLabel.length, metalDetectorLabel.length, htLabel.length,
     senterLabel.length, loncengLabel.length, cctvLabel.length, sepatuBootLabel.length, payungLabel.length
@@ -198,7 +199,8 @@ ${padLabel(wbpLuarLabel, maxPenghuniLabelLength)}: ${formatPenghuniCount(penghun
 ${padLabel(dapurLabel, maxPiketLabelLength)}: ${formatCommaSeparatedList(petugasPiket.dapur)}
 ${padLabel(blokWanitaLabel, maxPiketLabelLength)}: ${formatCommaSeparatedList(petugasPiket.piketBlokWanita)}
 ${padLabel(staffKPRLabel, maxPiketLabelLength)}: ${formatCommaSeparatedList(petugasPiket.piketStaffKPR)}
-${padLabel(staffSiangLabel, maxPiketLabelLength)}: ${formatCommaSeparatedList(petugasPiket.piketStaffSiang)}\`\`\``;
+${padLabel(staffSiangLabel, maxPiketLabelLength)}: ${formatCommaSeparatedList(petugasPiket.piketStaffSiang)}
+${padLabel(staffMalamLabel, maxPiketLabelLength)}: ${formatCommaSeparatedList(petugasPiket.piketStaffMalam)}\`\`\``;
 
   const bagianPersonil = `*B. PERSONIL PENGAMANAN*
 
