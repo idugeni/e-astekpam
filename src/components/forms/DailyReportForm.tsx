@@ -95,7 +95,7 @@ export function DailyReportForm({ onSubmit, onInvalid, isLoading }: DailyReportF
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit, onInvalid)} className="space-y-8">
+      <form onSubmit={form.handleSubmit(onSubmit, onInvalid)} className="space-y-4 sm:space-y-6">
         
         <GeneralInfoFormSection formControl={form.control} />
 
@@ -107,10 +107,12 @@ export function DailyReportForm({ onSubmit, onInvalid, isLoading }: DailyReportF
         <InventarisFormSection formControl={form.control} />
         <KejadianPentingFormSection formControl={form.control} />
 
-        <Button type="submit" className="w-full" disabled={isLoading}>
+        <div className="sticky bottom-2 z-20 rounded-lg bg-background/80 p-2 backdrop-blur sm:static sm:bg-transparent sm:p-0">
+          <Button type="submit" className="w-full" disabled={isLoading}>
           {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
           Buat Laporan
-        </Button>
+          </Button>
+        </div>
       </form>
     </Form>
   );

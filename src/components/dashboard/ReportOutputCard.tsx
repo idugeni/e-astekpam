@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from 'react';
@@ -34,78 +33,60 @@ export default function ReportOutputCard({
 }: ReportOutputCardProps) {
   return (
     <Card className="shadow-lg">
-      <CardHeader>
-        <CardTitle className="text-xl font-headline">Hasil Laporan</CardTitle>
-        <CardDescription>Laporan yang berhasil dibuat. Anda dapat mengunduh, menyalin, mengirim via WhatsApp, atau mengirimkannya via email.</CardDescription>
+      <CardHeader className="space-y-1 p-4 sm:p-6">
+        <CardTitle className="text-lg font-headline sm:text-xl">Hasil Laporan</CardTitle>
+        <CardDescription>
+          Laporan yang berhasil dibuat. Anda dapat mengunduh, menyalin, mengirim via WhatsApp, atau
+          mengirimkannya via email.
+        </CardDescription>
       </CardHeader>
-      <CardContent className="space-y-4">
+      <CardContent className="space-y-4 p-4 pt-0 sm:p-6 sm:pt-0">
         <Textarea
           value={generatedReport}
           readOnly
-          rows={20}
-          className={cn("font-mono text-sm p-4 rounded-md bg-muted dark:bg-zinc-700 dark:border-zinc-700")}
+          rows={16}
+          className={cn('max-h-[40svh] min-h-[18rem] font-mono text-xs leading-relaxed sm:text-sm p-3 sm:p-4 rounded-md bg-muted dark:bg-zinc-700 dark:border-zinc-700')}
         />
-{/* Container Utama: 
-  - `sm:justify-center` dihapus karena kita ingin item meregang, bukan hanya berkumpul di tengah.
-  - `sm:items-center` dipertahankan untuk alignment vertikal yang rapi.
-*/}
-<div className="flex flex-col sm:flex-row flex-wrap gap-4 sm:items-center">
 
-{/* Tombol Individu:
-  - `sm:w-auto` diganti dengan `sm:flex-1`.
-  - `w-full` tetap untuk tampilan mobile.
-  - `sm:flex-1` membuat tombol ini meregang dan mengisi ruang di desktop.
-*/}
-<Button onClick={onDownloadReport} className="w-full sm:flex-1" disabled={isSubmitting || isEmailing}>
-  <Download className="mr-2 h-4 w-4" />
-  Unduh Laporan (.txt)
-</Button>
+        <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 sm:gap-3">
+          <Button onClick={onDownloadReport} className="w-full" disabled={isSubmitting || isEmailing}>
+            <Download className="mr-2 h-4 w-4" />
+            Unduh Laporan (.txt)
+          </Button>
 
-<Button onClick={onCopyToClipboard} className="w-full sm:flex-1" disabled={isSubmitting || isEmailing}>
-  <Copy className="mr-2 h-4 w-4" />
-  Salin Laporan
-</Button>
+          <Button onClick={onCopyToClipboard} className="w-full" disabled={isSubmitting || isEmailing}>
+            <Copy className="mr-2 h-4 w-4" />
+            Salin Laporan
+          </Button>
 
-<Button 
-  onClick={onSendToWhatsApp} 
-  className="w-full sm:flex-1" 
-  disabled={!generatedReport || isSubmitting || isEmailing}
->
-  <Send className="mr-2 h-4 w-4" />
-  Kirim ke WhatsApp
-</Button>
+          <Button
+            onClick={onSendToWhatsApp}
+            className="w-full sm:col-span-2"
+            disabled={!generatedReport || isSubmitting || isEmailing}
+          >
+            <Send className="mr-2 h-4 w-4" />
+            Kirim ke WhatsApp
+          </Button>
+        </div>
 
-{/* Grup Input Email:
-  - DIV ini sekarang juga diperlakukan sebagai item flex yang bisa meregang (`sm:flex-1`).
-  - Kelas internalnya disederhanakan menjadi `flex items-center gap-2`.
-*/}
-<div className="flex items-center w-full sm:flex-1 gap-2">
-  {/* Input Email:
-    - Diberi `flex-1` agar mengisi ruang di DALAM grupnya sendiri.
-  */}
-  <Input 
-    type="email" 
-    placeholder="Email penerima" 
-    value={emailRecipient}
-    onChange={(e) => onEmailRecipientChange(e.target.value)}
-    className={cn("flex-1 bg-muted dark:bg-zinc-700 dark:border-zinc-700")}
-    disabled={isSubmitting || isEmailing}
-  />
-  {/* Tombol Kirim Email:
-    - Semua kelas width dihilangkan agar lebarnya natural.
-    - `flex-shrink-0` ditambahkan untuk mencegahnya menyusut.
-  */}
-  <Button 
-    onClick={onEmailReport} 
-    disabled={isEmailing || isSubmitting || !emailRecipient} 
-    className="flex-shrink-0"
-  >
-    {isEmailing ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Mail className="mr-2 h-4 w-4" />}
-    Kirim via Email
-  </Button>
-</div>
-
-</div>
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-center">
+          <Input
+            type="email"
+            placeholder="Email penerima"
+            value={emailRecipient}
+            onChange={(e) => onEmailRecipientChange(e.target.value)}
+            className={cn('w-full bg-muted dark:bg-zinc-700 dark:border-zinc-700')}
+            disabled={isSubmitting || isEmailing}
+          />
+          <Button
+            onClick={onEmailReport}
+            disabled={isEmailing || isSubmitting || !emailRecipient}
+            className="w-full sm:w-auto"
+          >
+            {isEmailing ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Mail className="mr-2 h-4 w-4" />}
+            Kirim via Email
+          </Button>
+        </div>
       </CardContent>
     </Card>
   );
