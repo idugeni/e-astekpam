@@ -11,8 +11,8 @@ export default function AppFooter() {
   }, []);
 
   return (
-    <footer className="bg-muted/50 dark:bg-muted/20 text-muted-foreground py-6 mt-auto">
-      <div className="container mx-auto px-4 text-center text-sm">
+    <footer className="mt-auto bg-muted/50 py-5 text-muted-foreground dark:bg-muted/20 sm:py-6">
+      <div className="container mx-auto px-3 text-center text-xs sm:px-4 sm:text-sm">
         {currentYear !== null ? (
           <p>&copy; {currentYear} E-ASTEKPAM. All rights reserved.</p>
         ) : (
