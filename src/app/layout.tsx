@@ -56,7 +56,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <AppHeader />
-          <main className="flex-grow container mx-auto px-4 py-8 max-w-2xl">
+          <main className="flex-grow container mx-auto w-full px-3 py-4 sm:px-4 sm:py-6 lg:py-8 max-w-6xl">
             {children}
           </main>
           <Toaster />

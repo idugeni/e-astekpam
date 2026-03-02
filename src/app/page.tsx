@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState } from 'react';
@@ -22,63 +21,70 @@ export default function DashboardPage() {
   const handleFormSubmit = async (data: DailyReportFormInputs) => {
     setIsSubmitting(true);
     setGeneratedReport(null);
-    const result = await submitDailyReport(data, undefined); 
+    const result = await submitDailyReport(data, undefined);
     if (result.success && result.reportText) {
       setGeneratedReport(result.reportText);
       setReportDateForEmail(data.tanggalLaporan);
       if (result.whatsappShareUrl) {
         setWhatsappUrl(result.whatsappShareUrl);
       }
-      toast({ 
-        title: "Laporan Berhasil Dibuat", 
+      toast({
+        title: "Laporan Berhasil Dibuat",
         description: `ID Laporan: ${result.reportId}, Disimpan di: ${result.storagePath}`,
-        variant: "default" 
+        variant: "default"
       });
 
       try {
         await navigator.clipboard.writeText(result.reportText);
-        toast({ 
-          title: "Laporan Disalin", 
+        toast({
+          title: "Laporan Disalin",
           description: "Teks laporan telah disalin ke clipboard.",
-          variant: "default" 
+          variant: "default"
         });
-      } catch (err) {
-
-        toast({ 
-          title: "Gagal Menyalin", 
+      } catch {
+        toast({
+          title: "Gagal Menyalin",
           description: "Tidak dapat menyalin laporan ke clipboard secara otomatis. Silakan salin manual.",
-          variant: "destructive" 
+          variant: "destructive"
         });
       }
 
     } else {
-      toast({ 
-        title: "Gagal Membuat Laporan", 
+      toast({
+        title: "Gagal Membuat Laporan",
         description: result.error,
-        variant: "destructive" 
+        variant: "destructive"
       });
     }
     setIsSubmitting(false);
   };
 
-  const getDeepErrorMessages = (errorsObject: any): string[] => {
+  const getDeepErrorMessages = (errorsObject: unknown): string[] => {
     const messages: string[] = [];
-    const recurse = (obj: any) => {
-      for (const key in obj) {
-        if (obj.hasOwnProperty(key)) {
-          const value = obj[key];
-          if (value && typeof value.message === 'string') {
-            messages.push(value.message);
-          } else if (typeof value === 'object' && value !== null && !value.ref) { 
-            recurse(value);
-          }
+    const recurse = (obj: unknown) => {
+      if (!obj || typeof obj !== 'object') return;
+
+      Object.values(obj as Record<string, unknown>).forEach((value) => {
+        if (
+          value &&
+          typeof value === 'object' &&
+          'message' in value &&
+          typeof (value as { message?: unknown }).message === 'string'
+        ) {
+          messages.push((value as { message: string }).message);
+          return;
         }
-      }
+
+        if (value && typeof value === 'object' && !(value as { ref?: unknown }).ref) {
+          recurse(value);
+        }
+      });
     };
+
     recurse(errorsObject);
     return messages;
   };
-  
+
   const handleFormInvalid = (errors: FieldErrors<DailyReportFormInputs>) => {
     const allErrorMessages = getDeepErrorMessages(errors);
     const errorCount = allErrorMessages.length;
@@ -94,9 +100,9 @@ export default function DashboardPage() {
       }
       toastDescription += " Silakan periksa field yang ditandai untuk detailnya.";
     }
-    
-    toast({ 
-      title: "Gagal Membuat Laporan", 
+
+    toast({
+      title: "Gagal Membuat Laporan",
       description: toastDescription,
       variant: "destructive",
     });
@@ -114,17 +120,17 @@ export default function DashboardPage() {
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    toast({ 
-      title: "Laporan Diunduh", 
+    toast({
+      title: "Laporan Diunduh",
       description: fileName,
-      variant: "default" 
+      variant: "default"
     });
   };
-  
+
   const handleCopyToClipboard = async () => {
     if (!generatedReport) {
-      toast({ 
-        title: "Tidak Ada Laporan", 
+      toast({
+        title: "Tidak Ada Laporan",
         description: "Buat laporan terlebih dahulu.",
         variant: "default"
       });
@@ -132,17 +138,16 @@ export default function DashboardPage() {
     }
     try {
       await navigator.clipboard.writeText(generatedReport);
-      toast({ 
-        title: "Laporan Disalin", 
+      toast({
+        title: "Laporan Disalin",
         description: "Teks laporan telah disalin ke clipboard.",
-        variant: "default" 
+        variant: "default"
       });
-    } catch (err) {
-
-      toast({ 
-        title: "Gagal Menyalin", 
+    } catch {
+      toast({
+        title: "Gagal Menyalin",
         description: "Tidak dapat menyalin laporan ke clipboard.",
-        variant: "destructive" 
+        variant: "destructive"
       });
     }
   };
@@ -157,25 +162,25 @@ export default function DashboardPage() {
       return;
     }
     window.open(whatsappUrl, '_blank');
-    toast({ 
-      title: "Membuka WhatsApp", 
+    toast({
+      title: "Membuka WhatsApp",
       description: "Silakan pilih kontak dan kirim laporan.",
-      variant: "default" 
+      variant: "default"
     });
   };
-  
+
   const handleEmailReport = async () => {
     if (!generatedReport || !reportDateForEmail) {
-      toast({ 
-        title: "Tidak Ada Laporan", 
+      toast({
+        title: "Tidak Ada Laporan",
         description: "Buat laporan terlebih dahulu.",
-        variant: "default" 
+        variant: "default"
       });
       return;
     }
     if (!emailRecipient) {
-      toast({ 
-        title: "Email Penerima Kosong", 
+      toast({
+        title: "Email Penerima Kosong",
         description: "Masukkan alamat email penerima.",
         variant: "destructive"
       });
@@ -184,42 +189,46 @@ export default function DashboardPage() {
     setIsEmailing(true);
     const result = await emailReportAction(generatedReport, reportDateForEmail, emailRecipient);
     if (result.success) {
-      toast({ 
-        title: "Email Terkirim", 
+      toast({
+        title: "Email Terkirim",
         description: result.message,
-        variant: "default" 
+        variant: "default"
       });
     } else {
-      toast({ 
-        title: "Gagal Mengirim Email", 
+      toast({
+        title: "Gagal Mengirim Email",
         description: result.error,
-        variant: "destructive" 
+        variant: "destructive"
       });
     }
     setIsEmailing(false);
   };
 
   return (
-    <div className="space-y-8">
-      <DailyReportForm 
-        onSubmit={handleFormSubmit} 
-        onInvalid={handleFormInvalid}
-        isLoading={isSubmitting} 
-      />
-
-      {generatedReport && (
-        <ReportOutputCard
-          generatedReport={generatedReport}
-          emailRecipient={emailRecipient}
-          onEmailRecipientChange={setEmailRecipient}
-          isSubmitting={isSubmitting}
-          isEmailing={isEmailing}
-          onDownloadReport={handleDownloadReport}
-          onCopyToClipboard={handleCopyToClipboard}
-          onSendToWhatsApp={handleSendToWhatsApp}
-          onEmailReport={handleEmailReport}
+    <div className="space-y-4 sm:space-y-6 lg:space-y-8">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-2 lg:items-start lg:gap-6 xl:gap-8">
+        <DailyReportForm
+          onSubmit={handleFormSubmit}
+          onInvalid={handleFormInvalid}
+          isLoading={isSubmitting}
         />
-      )}
+
+        {generatedReport && (
+          <div className="lg:sticky lg:top-20">
+            <ReportOutputCard
+              generatedReport={generatedReport}
+              emailRecipient={emailRecipient}
+              onEmailRecipientChange={setEmailRecipient}
+              isSubmitting={isSubmitting}
+              isEmailing={isEmailing}
+              onDownloadReport={handleDownloadReport}
+              onCopyToClipboard={handleCopyToClipboard}
+              onSendToWhatsApp={handleSendToWhatsApp}
+              onEmailReport={handleEmailReport}
+            />
+          </div>
+        )}
+      </div>
     </div>
   );
 }
